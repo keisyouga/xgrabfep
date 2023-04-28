@@ -1,0 +1,11 @@
+cangjie3.dic
+
+source:
+ download from
+ https://github.com/fcitx/fcitx5-table-extra/tables/cangjie3.txt
+
+copyright: https://github.com/fcitx/fcitx5-table-extra/blob/master/README
+ All the data file is now in public domain.
+
+comment:
+ remove header and rename to *.dic

@@ -1,0 +1,37 @@
+zozy.dic
+
+source:
+ get from GNU Emacs distribution
+ http://git.savannah.gnu.org/cgit/emacs.git/tree/leim/CXTERM-DIC/ZOZY.tit
+
+copyright:
+ COMMENT Copyright (c) 1997 Wei-Chung Hwang <wchwang@csie.nctu.edu.tw>
+ COMMENT 
+ COMMENT Permission to copy and distribute both modified and unmodified
+ COMMENT versions is granted without royalty provided this notice is preserved.
+ COMMENT
+ COMMENT Constructed by Wei-Chung Hwang(黃維中 wchwang@csie.nctu.edu.tw)
+ COMMENT Made available in TANET at Oct 15, 1992.
+
+comment:
+ convert to zozy.dic
+ $ cat ZOZY.tit | sed '1,/BEGINDICTIONARY/d;/^#/d' | sed 's/\\040/@/g' | iconv -f big5 -t utf8 | tclsh conv-zozy.tcl > zozy.dic
+
+in original file di-yi-sheng represent as space (\040),
+but in dic file space represent as separator, so replace \040 to @.
+
+conv-zozy.tcl:
+#
+# simple script for create dic from tit
+#
+# for example:
+#   cat emacs/leim/CXTERM-DIC/ZOZY.tit | sed '1,/BEGINDICTIONARY/d;/^#/d' | sed 's/\\040/@/g' | iconv -f big5 -t utf8 | tclsh conv-zozy.tcl
+#
+while {[gets stdin line] >= 0} {
+	set s [split $line "\t"]
+	set key [lindex $s 0]
+	set data [split [lindex $s 1] {}]
+	foreach i $data {
+		puts "$key $i"
+	}
+}

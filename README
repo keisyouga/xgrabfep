@@ -1,0 +1,78 @@
+xgrabfep
+================
+
+this is a program to input characters for x11.
+
+using this program, you can input multibyte characters without installing input method.
+
+this program is influenced by xdotool.
+
+how to start
+----------------
+
+### linux (64-bit)
+
+run
+
+        $ ./xgrabfep-linux-x86_64
+
+### other environment
+
+if xgrabfep-linux-x86_64 is not executable in your environment,
+  1. compile [tkxwin](../tkxwin)
+  2. put libtkxwin.so and pkgIndex.tcl into xgrabfep.vfs/lib/tkxwin/
+  3. put main.tcl into xgrabfep.vfs/
+  4. check tcl/tk installed
+
+now, you can run
+
+        $ wish xgrabfep.vfs/main.tcl
+
+default key bindings
+----------------
+
+        +-------------+------------------+
+        |    alt+j    |      enable      |
+        |    alt+k    |     disable      |
+        | alt+shift+q |       quit       |
+        +-------------+------------------+
+        |    alt+0    |   change mode    |
+        |    alt+1    |   change mode    |
+        |    alt+2    |   change mode    |
+        |    alt+3    |   change mode    |
+        |    alt+4    |   change mode    |
+        |    escape   |      cancel      |
+        |  control+g  |      cancel      |
+        |    space    |      commit      |
+        +-------------+------------------+
+        |  control+p  | select candidate |
+        |  control+n  | select candidate |
+        |  control+b  | select candidate |
+        |  control+f  | select candidate |
+        |  control+a  | select candidate |
+        |  control+e  | select candidate |
+        +-------------+------------------+
+
+
+how it works
+----------------
+
+grabs keypress event of the active window, and send converted characters to the window.
+
+use XGrabKey() to receive KeyPress and use XSendEvent() to send.
+
+customize
+----------------
+
+edit config.tcl
+
+add *.map files in map/ directly
+
+add *.dic files in dic/ directly
+
+limitations
+----------------
+
+- not all software accepts input from XSendEvent().
+- slow sending.
+- may send characters incorrectly.
