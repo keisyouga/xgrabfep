@@ -519,13 +519,13 @@ proc makePalette {} {
 # return dict
 proc loadMapOrDic {mapfile} {
 	debugPuts "loadMapOrDic : $mapfile"
+	# open file
 	if {[catch {set chan [open $mapfile "r"]} fid]} {
-		# error
+		# cannot open file
 		debugPuts "loadMapOrDic : $fid"
 		# return empty list
 		return {}
 	}
-	
 	fconfigure $chan -encoding utf-8
 
 	set dictv {}
@@ -538,6 +538,10 @@ proc loadMapOrDic {mapfile} {
 		set d [join [lrange $fields 1 end]]
 		dict lappend dictv "$k" "$d"
 	}
+
+	# close file
+	close $chan
+
 	return $dictv
 }
 
