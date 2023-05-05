@@ -313,10 +313,10 @@ proc myInit {} {
 	}
 
 	# load map/*.map and empty map {}
-	append mapFileList "{} [glob map/*.map]"
+	append mapFileList "{} [glob -nocomplain map/*.map]"
 	set mapFile [lindex $mapFileList 0]
 	# load dic/*.dic and empty dic {}
-	append dicFileList "{} [glob dic/*.dic]"
+	append dicFileList "{} [glob -nocomplain dic/*.dic]"
 	set dicFile [lindex $dicFileList 0]
 
 	registerHotkeys
