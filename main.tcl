@@ -355,7 +355,6 @@ proc makeCandwin {} {
 	wm withdraw $w
 
 	wm overrideredirect $w 1
-	# wm attribute $w -type dnd
 
 	pack [label $w.input -textvariable inputString]
 	pack [label $w.mapped -textvariable mappedString]
@@ -554,7 +553,7 @@ proc main {} {
 	set mappedString {}
 	set precommitString {}
 
-	# problem occurs if tk window has focus
+	# hide main window, problem occurs if tk window has focus
 	wm overrideredirect . 1
 	wm withdraw .
 }
