@@ -39,8 +39,15 @@ copyright:
  ;;
 
 comment:
- convert to skk-jisyo.dic
+ convert SKK-JISYO.ML.gz to skk-jisyo.dic
  $ zcat SKK-JISYO.ML.gz | iconv -f euc-jp -t utf-8 | tclsh make-dic-from-skkdic.tcl > skk-jisyo.dic
+
+ replace okurigana with ";", to make it easy to use other than skk input method
+ $ sed -i 's/\([ぁ-ん]\)[a-z]/\1;/' skk-jisyo.dic
+
+ remove duplication line
+ $ awk '!a[$0]++' < skk-jisyo.dic > skk-jisyo.dic.1
+ $ mv skk-jisyo.dic.1 skk-jisyo.dic
 
 make-dic-from-skkdic.tcl:
  # generate dic file from SKK-JISYO
